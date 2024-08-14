@@ -20,6 +20,7 @@ public class VersionModel extends CommonModel{
     @Column(nullable = false)
     Integer carModelId;
     String versionName ;
+    String type ;
     BigDecimal publicPrice = new BigDecimal(0.00);
     BigDecimal onRoadPriceHCM = new BigDecimal(0.00);
     BigDecimal onRoadPriceHN = new BigDecimal(0.00);

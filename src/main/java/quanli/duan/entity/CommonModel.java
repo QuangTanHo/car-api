@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  abstract  class CommonModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Boolean isActive = false;
+    private Boolean isActive = true;
 
     private LocalDateTime createDate;
 
