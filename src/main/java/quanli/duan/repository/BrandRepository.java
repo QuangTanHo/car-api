@@ -17,6 +17,7 @@ public interface BrandRepository extends JpaRepository<BrandModel, Integer> {
     List<BrandModel> findAll();
     @Query("SELECT new quanli.duan.dto.response.brand.BrandMenu(b.brandId, b.name, b.href) " +
             "FROM  brand b " +
-            "WHERE b.isActive = :isActive ")
-    List<BrandMenu> getListBrandMennu(@Param("isActive") Boolean isActive);
+            "WHERE b.isDelete = :isDelete ")
+    List<BrandMenu> getListBrandMennu(@Param("isDelete") Boolean isDelete);
+    List<BrandMenu> getBrandModelByBrandIdAndIsDelete( Integer brandId ,Boolean isDelete);
 }

@@ -3,7 +3,9 @@ package quanli.duan.entity;
 import lombok.*;
 import quanli.duan.repository.ShowRoomRepository;
 
-import javax.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Getter
 @Setter
@@ -13,7 +15,6 @@ import javax.persistence.*;
 @Entity(name = ShowRoomRepository.TABLE)
 public class ShowRoomModel extends CommonModel{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     Integer showRoomId;
     Integer brandId;
@@ -25,5 +26,6 @@ public class ShowRoomModel extends CommonModel{
     String area;
     String city;
     String type;
+    String outstanding;
 
 }

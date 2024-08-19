@@ -1,29 +1,21 @@
 package quanli.duan.service;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import quanli.duan.core.response.ResponseBody;
-import quanli.duan.dto.request.UserRequest;
-import quanli.duan.entity.UserModel;
-import quanli.duan.repository.UserRepository;
+import quanli.duan.dto.request.users.UpdateUserRequest;
+import quanli.duan.dto.request.users.UserSearchRequest;
 
-import static quanli.duan.core.response.ResponseStatus.SUCCESS;
+public interface UserService {
 
-@Slf4j
-@Service
-@RequiredArgsConstructor
-public class UserService {
-    private final UserRepository userRepository;
+    UserDetailsService userDetailsService();
 
-    public UserModel saveUser(UserRequest request) {
-//        UserModel userModel = UserModel.builder().build();
-        return null;
-    }
+    ResponseBody<Object> getAllUserDetail();
 
-    public ResponseBody<Object> getUserDetail(String userId) {
-        var response = new ResponseBody<>();
-        response.setOperationSuccess(SUCCESS, "mock");
-        return response;
-    }
+    ResponseBody<Object> getUserIdDetail(String userId);
+
+    ResponseBody<Object> updateUser(UpdateUserRequest request);
+
+    ResponseBody<Object> deleteUserById(String userId);
+
+    ResponseBody<Object> getAllUserPage(UserSearchRequest request);
 }

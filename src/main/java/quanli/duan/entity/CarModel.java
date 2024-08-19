@@ -3,7 +3,9 @@ package quanli.duan.entity;
 import lombok.*;
 import quanli.duan.repository.CarModelRepository;
 
-import javax.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import java.math.BigDecimal;
 
 @Getter
@@ -14,12 +16,11 @@ import java.math.BigDecimal;
 @Entity(name = CarModelRepository.TABLE)
 public class CarModel extends CommonModel{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     Integer carModelId;
     Integer brandId;
     Integer carImageId;
-    String name;
+    String carName;
     String href;
     String imageUrl;
     String type;

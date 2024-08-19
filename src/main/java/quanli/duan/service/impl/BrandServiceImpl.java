@@ -38,9 +38,15 @@ public class BrandServiceImpl implements BrandService {
 @Override
     public ResponseBody<Object> getMenu() {
         List<BrandMenu> listBrandMennus = brandRepository.getListBrandMennu(Boolean.TRUE);
-        for(BrandMenu brand : listBrandMennus){
-            brand.setChildrenCar(carModelRepository.getListBrandMennu(Boolean.TRUE, brand.getBrandId()));
-        }
+        listBrandMennus.forEach(brandMenu -> {
+            var listBrandMennu = carModelRepository.getListBrandMennu(Boolean.TRUE, brandMenu.getBrandId());
+            if (!listBrandMennu.isEmpty()) {
+                brandMenu.setChildrenCar(listBrandMennu);
+            }
+        });
+//        for(BrandMenu brand : listBrandMennus){
+//            brand.setChildrenCar(carModelRepository.getListBrandMennu(Boolean.TRUE, brand.getBrandId()));
+//        }
         var response = new ResponseBody<>();
         response.setOperationSuccess(SUCCESS, listBrandMennus);
         return response;

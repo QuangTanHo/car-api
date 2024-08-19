@@ -1,9 +1,11 @@
 package quanli.duan.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.*;
 import quanli.duan.repository.BrandRepository;
 
-import javax.persistence.*;
 
 @Getter
 @Setter
@@ -13,7 +15,6 @@ import javax.persistence.*;
 @Entity(name = BrandRepository.TABLE)
 public class BrandModel extends CommonModel{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     Integer brandId;
     Integer imageId;

@@ -4,9 +4,9 @@ import lombok.*;
 import quanli.duan.repository.RoleRepository;
 import quanli.duan.repository.UserRepository;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Getter
 @Setter

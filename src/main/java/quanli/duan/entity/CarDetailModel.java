@@ -1,9 +1,11 @@
 package quanli.duan.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.*;
 import quanli.duan.repository.CarDetailRepository;
 
-import javax.persistence.*;
 
 @Getter
 @Setter
@@ -13,7 +15,6 @@ import javax.persistence.*;
 @Entity(name = CarDetailRepository.TABLE)
 public class CarDetailModel extends CommonModel{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     Integer carDetailId;
     @Column(nullable = false)

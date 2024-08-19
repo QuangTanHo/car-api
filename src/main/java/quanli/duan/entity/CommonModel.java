@@ -1,8 +1,7 @@
 package quanli.duan.entity;
 
-import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -10,7 +9,7 @@ import java.time.LocalDateTime;
  abstract  class CommonModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Boolean isActive = true;
+    private Boolean isDelete = true;
 
     private LocalDateTime createDate;
 

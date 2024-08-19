@@ -1,9 +1,11 @@
 package quanli.duan.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.*;
 import quanli.duan.repository.VersionRepository;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Getter
@@ -14,7 +16,6 @@ import java.math.BigDecimal;
 @Entity(name = VersionRepository.TABLE)
 public class VersionModel extends CommonModel{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     Integer versionId;
     @Column(nullable = false)
