@@ -1,8 +1,6 @@
 package quanli.duan.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import quanli.duan.repository.VersionRepository;
 
@@ -14,17 +12,33 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = VersionRepository.TABLE)
-public class VersionModel extends CommonModel{
+public class VersionModel extends CommonModel {
     @Id
-    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "version_id", nullable = false)
     Integer versionId;
-    @Column(nullable = false)
+
+    @Column(name = "car_model_id", nullable = false)
     Integer carModelId;
-    String versionName ;
-    String type ;
+
+    @Column(name = "version_name")
+    String versionName;
+
+    @Column(name = "type")
+    String type;
+
+    @Column(name = "public_price")
     BigDecimal publicPrice = new BigDecimal(0.00);
+
+    @Column(name = "on_road_price_hcm")
     BigDecimal onRoadPriceHCM = new BigDecimal(0.00);
+
+    @Column(name = "on_road_price_hn")
     BigDecimal onRoadPriceHN = new BigDecimal(0.00);
+
+    @Column(name = "on_road_price_province")
     BigDecimal onRoadPriceProvince = new BigDecimal(0.00);
-    BigDecimal installmentPayment= new BigDecimal(0.00);
+
+    @Column(name = "installment_payment")
+    BigDecimal installmentPayment = new BigDecimal(0.00);
 }

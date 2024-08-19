@@ -1,9 +1,8 @@
 package quanli.duan.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import quanli.duan.repository.BrandRepository;
 import quanli.duan.repository.CarDetailRepository;
 
 
@@ -13,45 +12,70 @@ import quanli.duan.repository.CarDetailRepository;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = CarDetailRepository.TABLE)
-public class CarDetailModel extends CommonModel{
+public class CarDetailModel extends CommonModel {
+
     @Id
-    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "car_detail_id", nullable = false)
     Integer carDetailId;
-    @Column(nullable = false)
+
+    @Column(name = "car_model_id", nullable = false)
     Integer carModelId;
+
+    @Column(name = "car_detail_name")
     String carDetailName;
+
+    @Column(name = "brand_name")
     String brandname;
+
+    @Column(name = "type_of_vehicle")
     String typeOfvehicle;
+
+    @Column(name = "segment")
     String segment;
+
+    @Column(name = "origin")
     String origin;
+
+    @Column(name = "price_range")
     String priceRange;
-//    BigDecimal priceRangeMin = new BigDecimal(0.000);
-//    BigDecimal priceRangeMax = new BigDecimal(0.000);
-//    chỗ ngồi
+
+    @Column(name = "seat")
     String seat;
+
+    @Column(name = "hww")
     String HWW;
-//    Double width;
-//    Double weight;
-    //    Khoảng sáng gầm xe
+
+    @Column(name = "ground_clearance")
     String groundClearance;
-    //    Vành và Lốp xe
+
+    @Column(name = "wheels_and_tires")
     String wheelsAndTires;
-    //    Động cơ
+
+    @Column(name = "engine")
     String engine;
-    //    Công suất
+
+    @Column(name = "power")
     String power;
-    //    Mô men xoắn
+
+    @Column(name = "torque")
     String torque;
-    //    Hộp số
+
+    @Column(name = "transmission")
     String transmission;
-    //    Hệ thống dẫn động
+
+    @Column(name = "drive_system")
     String driveSystem;
-    //    Hệ thống treo trước/sau
+
+    @Column(name = "suspension_system")
     String suspensionSystem;
-    //    Phanh trước/sau
+
+    @Column(name = "rear_brake")
     String rearBrake;
-    //    Phanh trước/sau
+
+    @Column(name = "brake_technology")
     String brakeTechnology;
 
+    @Column(name = "type")
     String type;
 }

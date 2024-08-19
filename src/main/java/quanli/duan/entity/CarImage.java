@@ -11,11 +11,18 @@ import quanli.duan.repository.CarImageRepository;
 @AllArgsConstructor
 @Entity(name = CarImageRepository.TABLE)
 public class CarImage extends CommonModel{
+
     @Id
-    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "car_image_id", nullable = false)
     Integer carImageId;
-    @Column(nullable = false)
+
+    @Column(name = "car_model_id", nullable = false)
     Integer carModelId;
+
+    @Column(name = "url_image")
     String urlImage;
+
+    @Column(name = "type")
     String type;
 }
