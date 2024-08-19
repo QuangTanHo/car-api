@@ -20,4 +20,10 @@ public class ShowRoomController {
                                                          @RequestParam(value = "size", required = false )  Integer size) {
         return ResponseEntity.ok(showRoomService.getShowRoomByBrandId(brandId, page, size));
     }
+
+    @GetMapping("/get-by-outstanding")
+    public ResponseEntity<Object> getShowRoomByOutstanding(  @RequestParam(value = "page", required = false )  Integer page,
+                                                             @RequestParam(value = "size", required = false )  Integer size) {
+        return ResponseEntity.ok(showRoomService.getShowRoomByOutstanding(page,size));
+    }
 }

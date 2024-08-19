@@ -9,4 +9,6 @@ public interface CarDetailRepository  extends JpaRepository<CarDetailModel, Inte
     String TABLE ="car_details";
 
     CarDetailModel findByCarDetailName(String name);
+    CarDetailModel findByCarModelIdAndIsDelete(Integer carModelId, Boolean isDelete);
+
 }

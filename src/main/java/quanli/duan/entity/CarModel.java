@@ -1,9 +1,9 @@
 package quanli.duan.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 import quanli.duan.repository.CarModelRepository;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Getter
@@ -15,14 +15,29 @@ import java.math.BigDecimal;
 public class CarModel extends CommonModel{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
+    @Column(name = "car_model_id", nullable = false)
     Integer carModelId;
+
+    @Column(name = "brand_id")
     Integer brandId;
+
+    @Column(name = "car_image_id")
     Integer carImageId;
-    String name;
+
+    @Column(name = "car_name")
+    String carName;
+
+    @Column(name = "href")
     String href;
+
+    @Column(name = "image_url")
     String imageUrl;
+
+    @Column(name = "type")
     String type;
-    BigDecimal price = new BigDecimal(0.000);
+
+    @Column(name = "price", precision = 20, scale = 3)
+    BigDecimal price = new BigDecimal("0.000");
+
 
 }

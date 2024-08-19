@@ -69,13 +69,13 @@ public class CrawlDataService {
                         String price =  priceElement != null ? (item.selectFirst("p > b").text()).replaceAll(",","").replaceAll("đ","") :"0" ;
 
                         AtomicReference<CarModel> carModelRef = new AtomicReference<>(null);
-                        carModelRef.set(this.carModelRepository.findByName(name));
+                        carModelRef.set(this.carModelRepository.findByCarName(name));
                         if (!Objects.isNull(carModelRef.get())) {
                             listCarModel.add(carModelRef.get());
                         } else {
                             CarModel newCarModel = new CarModel();
                             newCarModel.setBrandId(x.getBrandId());
-                            newCarModel.setName(name);
+                            newCarModel.setCarName(name);
                             newCarModel.setImageUrl(imageUrl);
                             newCarModel.setHref(href);
                             newCarModel.setPrice(new BigDecimal(price));
@@ -318,7 +318,7 @@ public class CrawlDataService {
                         }
                     }
                     AtomicReference<CarDetailModel> carDetailModelRef = new AtomicReference<>(null);
-                    carDetailModelRef.set(this.carDetailRepository.findByCarDetailName(x.getName()));
+                    carDetailModelRef.set(this.carDetailRepository.findByCarDetailName(x.getCarName()));
                     if (!Objects.isNull(carDetailModelRef.get())) {
                         if(isUpdatethongsokythuat){
                             //   chỗ ngồi
@@ -352,7 +352,7 @@ public class CrawlDataService {
                     } else {
                         CarDetailModel carDetailModel = new CarDetailModel();
                         carDetailModel.setCarModelId(x.getCarModelId());
-                        carDetailModel.setCarDetailName(x.getName());
+                        carDetailModel.setCarDetailName(x.getCarName());
                         carDetailModel.setBrandname(thuongHieu);
                         carDetailModel.setTypeOfvehicle(loaiXe);
                         carDetailModel.setSegment(phanKhuc);
@@ -399,7 +399,7 @@ public class CrawlDataService {
                             String lanBanhHN = cells.get(3).text();
                             String lanBanhTinh = cells.get(4).text();
                             AtomicReference<VersionModel> versionModelRef = new AtomicReference<>(null);
-                            versionModelRef.set(this.versionRepository.findByVersionName(x.getName()));
+                            versionModelRef.set(this.versionRepository.findByVersionName(x.getCarName()));
                             if (!Objects.isNull(versionModelRef.get())) {
                                 versionModelRef.get().setVersionName(phienBan);
                                 versionModelRef.get().setInstallmentPayment(new BigDecimal(giaCongBo.replaceAll(",","").replaceAll("₫","")));

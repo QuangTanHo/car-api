@@ -20,4 +20,9 @@ public class BrandController {
         return ResponseEntity.ok(brandService.getAllBranch());
     }
 
+    @GetMapping("/get-menu")
+    public ResponseEntity<Object> getMenu() {
+        return ResponseEntity.ok(brandService.getMenu());
+    }
+
 }

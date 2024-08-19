@@ -7,13 +7,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import quanli.duan.entity.ShowRoomModel;
 
-import java.util.List;
 
 @Repository
 public interface ShowRoomRepository  extends JpaRepository<ShowRoomModel, Integer> {
         String TABLE ="show_room";
         ShowRoomModel findByName(String name);
-        Page<ShowRoomModel> findByBrandId(@Param("brandId") Integer brandId, Pageable pageable);
-        Page<ShowRoomModel> findAll(Pageable pageable);
+        Page<ShowRoomModel> findByBrandIdAndIsDelete(Integer brandId,Boolean isDelete, Pageable pageable);
+        Page<ShowRoomModel> findAllByIsDelete(Boolean isDelete, Pageable pageable);
+        Page<ShowRoomModel> findAllByOutstandingAndIsDelete(String outstanding,Boolean isDelete, Pageable pageable);
 
 }

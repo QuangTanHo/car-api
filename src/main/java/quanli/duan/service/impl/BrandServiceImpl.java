@@ -5,10 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import quanli.duan.core.response.ErrorData;
 import quanli.duan.core.response.ResponseBody;
-//import quanli.duan.exception.ServiceSecurityException;
+import quanli.duan.dto.response.brand.BrandMenu;
 import quanli.duan.repository.BrandRepository;
+import quanli.duan.repository.CarModelRepository;
 import quanli.duan.service.BrandService;
 
+import java.util.List;
 import java.util.Objects;
 
 import static quanli.duan.core.response.ResponseStatus.BRANCH_NOT_FOUND;
@@ -18,6 +20,7 @@ import static quanli.duan.core.response.ResponseStatus.SUCCESS;
 @RequiredArgsConstructor
 public class BrandServiceImpl implements BrandService {
     private final BrandRepository brandRepository;
+    private final CarModelRepository carModelRepository;
 
 @Override
     public ResponseBody<Object> getAllBranch() {
@@ -32,6 +35,21 @@ public class BrandServiceImpl implements BrandService {
         response.setOperationSuccess(SUCCESS, brandModels);
         return response;
     }
-
+@Override
+    public ResponseBody<Object> getMenu() {
+        List<BrandMenu> listBrandMennus = brandRepository.getListBrandMennu(Boolean.TRUE);
+        listBrandMennus.forEach(brandMenu -> {
+            var listBrandMennu = carModelRepository.getListBrandMennu(Boolean.TRUE, brandMenu.getBrandId());
+            if (!listBrandMennu.isEmpty()) {
+                brandMenu.setChildrenCar(listBrandMennu);
+            }
+        });
+//        for(BrandMenu brand : listBrandMennus){
+//            brand.setChildrenCar(carModelRepository.getListBrandMennu(Boolean.TRUE, brand.getBrandId()));
+//        }
+        var response = new ResponseBody<>();
+        response.setOperationSuccess(SUCCESS, listBrandMennus);
+        return response;
+    }
 
 }

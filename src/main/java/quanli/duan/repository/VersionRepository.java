@@ -16,7 +16,7 @@ public interface VersionRepository extends JpaRepository<VersionModel, Integer> 
 
     VersionModel findByVersionName(String name);
 
-@Query("SELECT new quanli.duan.dto.response.version.versionRespone( v.versionId , v.versionName,m.name, b.name,  d.segment, v.installmentPayment) " +
+@Query("SELECT new quanli.duan.dto.response.version.versionRespone( v.versionId , v.versionName,m.carName, b.name,  d.segment, v.installmentPayment) " +
         "FROM version_cars v, car_models m, car_details d, brand b " +
         "WHERE v.carModelId = m.carModelId " +
         "AND m.carModelId = d.carModelId " +
@@ -24,4 +24,5 @@ public interface VersionRepository extends JpaRepository<VersionModel, Integer> 
         "AND (:brandId IS NULL OR b.brandId = :brandId)")
 List<versionRespone> findVersionModelByBrandId (@Param("brandId") Integer brandId);
 
+    List<VersionModel> findByCarModelIdAndIsDelete(Integer carModelId, Boolean isDelete);
 }
