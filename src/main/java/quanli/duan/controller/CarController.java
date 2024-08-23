@@ -13,27 +13,27 @@ import java.math.BigDecimal;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/auth/v1/car")
+@RequestMapping("/api/v1/")
 public class CarController {
     private final CarService carService;
 
-    @GetMapping("/search-price")
+    @GetMapping("un-auth/car/search-price")
     public ResponseEntity<Object> getListCarModelByPrice(@RequestBody CarSearchRequest request) {
         return ResponseEntity.ok(carService.getListCarModelByPrice(request));
     }
-    @GetMapping("/get-by-brandId")
+    @GetMapping("un-auth/car/get-by-brandId")
     public ResponseEntity<Object> getCarModelByBrandId(@Param("brandId") Integer brandId ,
                                                        @Param("page") Integer page ,
                                                        @Param("size") Integer size ) {
         return ResponseEntity.ok(carService.getCarModelByBrandId(brandId,page,size));
     }
 
-    @GetMapping("/get-list-by-brandId")
+    @GetMapping("un-auth/car/get-list-by-brandId")
     public ResponseEntity<Object> getCarModelByBrandId(@Param("brandId") Integer brandId  ) {
         return ResponseEntity.ok(carService.getListCarModelByBrandId(brandId));
     }
 
-    @GetMapping("/compare-car")
+    @GetMapping("un-auth/car/compare-car")
     public ResponseEntity<Object> getCarModelByBrandId(@RequestBody CompareCarRequest request) {
         return ResponseEntity.ok(carService.copmareCar(request));
     }

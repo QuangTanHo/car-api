@@ -33,6 +33,5 @@ public class BrandModel extends CommonModel {
     @Column(name = "type")
     String type;
 
-    // Getters and setters (optional)
 }
 

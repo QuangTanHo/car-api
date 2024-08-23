@@ -40,7 +40,7 @@ public class SecurityConfiguration {
                     configuration.setAllowedHeaders(List.of("authorization", "content-type", "x-auth-token"));
                     return configuration;
                 }))
-                .authorizeHttpRequests(request -> request.requestMatchers("/api/v1/un_auth/**")
+                .authorizeHttpRequests(request -> request.requestMatchers("/api/v1/un-auth/**")
                         .permitAll()
                         .requestMatchers("/api/v1/admin").hasAnyAuthority("1")
                         .requestMatchers("/api/v1/user").hasAnyAuthority("2")

@@ -78,4 +78,22 @@ public class CarDetailModel extends CommonModel {
 
     @Column(name = "type")
     String type;
+    //nổi bật
+    @Column (name ="outstanding")
+    String outstanding;
+    //ngoai that
+    @Column (name ="exterior")
+    String exterior ;
+    //noi that
+    @Column (name ="interior")
+    String interior ;
+    //van hanh
+    @Column (name ="operate")
+    String operate ;
+
+    //an toan va tien nghi
+    @Column (name ="safe_and_comfortable")
+    String safeAndComfortable ;
+
+
 }

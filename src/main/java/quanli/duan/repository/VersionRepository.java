@@ -21,8 +21,9 @@ public interface VersionRepository extends JpaRepository<VersionModel, Integer> 
         "WHERE v.carModelId = m.carModelId " +
         "AND m.carModelId = d.carModelId " +
         "AND m.brandId = b.brandId " +
+        "AND v.isDelete = :isDelete " +
         "AND (:brandId IS NULL OR b.brandId = :brandId)")
-List<versionRespone> findVersionModelByBrandId (@Param("brandId") Integer brandId);
+    List<versionRespone> findVersionModelByBrandId (@Param("brandId") Integer brandId, @Param("isDelete") Boolean isDelete);
 
     List<VersionModel> findByCarModelIdAndIsDelete(Integer carModelId, Boolean isDelete);
 }
