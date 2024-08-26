@@ -12,14 +12,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BrandSaveOrUpdateRequest {
-    @NotBlank(message = "Brand is not blank")
-    @JsonProperty("brand_id")
+
+    @JsonProperty("brandId")
     Integer brandId ;
 
     @NotBlank(message = "Brand name not blank")
     String name;
 
-    Integer imageId;
+    String fileId;
 
     String href;
 

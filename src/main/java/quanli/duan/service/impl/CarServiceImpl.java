@@ -63,13 +63,17 @@ public class CarServiceImpl implements CarService {
    }
 
    @Override
-   public ResponseBody<Object> copmareCar(CompareCarRequest request) {
+   public ResponseBody<Object> compareCar(CompareCarRequest request) {
       var mapper = new ObjectMapper();
       var json = mapper.createObjectNode();
-      CarDetailModel responeDetail1 = carDetailRepository.findByCarModelIdAndIsDelete(request.getCarModelId1(),Boolean.TRUE );
-      CarDetailModel responeDetail2 = carDetailRepository.findByCarModelIdAndIsDelete(request.getCarModelId2(),Boolean.TRUE );
+      CarDetailModel responeDetail1 = carDetailRepository.findByCarModelIdAndIsDelete(Integer.parseInt(request.getCarModelId1()) ,Boolean.TRUE );
+      CarDetailModel responeDetail2 = carDetailRepository.findByCarModelIdAndIsDelete(Integer.parseInt(request.getCarModelId2()) ,Boolean.TRUE );
+      CarModel image1 = carModelRepository.findByCarModelIdAndIsDelete(Integer.parseInt(request.getCarModelId1()) ,Boolean.TRUE);
+      CarModel image2 = carModelRepository.findByCarModelIdAndIsDelete(Integer.parseInt(request.getCarModelId2()) ,Boolean.TRUE);
       json.putPOJO("car1", responeDetail1);
+      json.putPOJO("image1", image1.getImageUrl());
       json.putPOJO("car2", responeDetail2);
+      json.putPOJO("image2", image2.getImageUrl());
       var response = new ResponseBody<>();
       response.setOperationSuccess(SUCCESS, json);
       return response;

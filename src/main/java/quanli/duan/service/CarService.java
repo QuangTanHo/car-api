@@ -13,5 +13,5 @@ public interface CarService {
 
     ResponseBody<Object> getListCarModelByBrandId(Integer brandId);
 
-    ResponseBody<Object> copmareCar(CompareCarRequest request);
+    ResponseBody<Object> compareCar(CompareCarRequest request);
 }

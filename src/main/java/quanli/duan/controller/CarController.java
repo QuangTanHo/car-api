@@ -33,9 +33,9 @@ public class CarController {
         return ResponseEntity.ok(carService.getListCarModelByBrandId(brandId));
     }
 
-    @GetMapping("un-auth/car/compare-car")
+    @PostMapping("un-auth/car/compare-car")
     public ResponseEntity<Object> getCarModelByBrandId(@RequestBody CompareCarRequest request) {
-        return ResponseEntity.ok(carService.copmareCar(request));
+        return ResponseEntity.ok(carService.compareCar(request));
     }
 
 }

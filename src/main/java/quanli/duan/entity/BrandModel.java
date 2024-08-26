@@ -18,8 +18,8 @@ public class BrandModel extends CommonModel {
     @Column(name = "brand_id", nullable = false)
     Integer brandId;
 
-    @Column(name = "image_id")
-    Integer imageId;
+    @Column(name = "file_id")
+    String fileId;
 
     @Column(name = "name")
     String name;
