@@ -43,7 +43,7 @@ public class CrawlDataService {
                 String href = element.attr("href");
                 String imageUrl = element.select("img").attr("data-src");
 
-				brandModel = this.brandRepository.findByName(name);
+				brandModel = this.brandRepository.findByNameAndIsDelete(name, Boolean.TRUE);
                 if(!Objects.isNull(brandModel)){
                     listBrand.add(brandModel);
                 }else {
@@ -217,6 +217,48 @@ public class CrawlDataService {
                             this.carImageRepository.save(newCarImageModel);
                         }
                     }
+                    Elements elementsCarDetailContent = docCar.select("#car-detail-content");
+                    Element contentElement = elementsCarDetailContent.first();
+                    String noibat ="";
+                    if (contentElement != null) {
+                        StringBuilder content = new StringBuilder();
+
+                        for (Element child : contentElement.children()) {
+                            if (child.tagName().equals("h3")) {
+                                break;
+                            }
+                            content.append(child.outerHtml());
+                        }
+                        noibat =content.toString().replaceAll("/images/","https://oto360.net/images/");
+
+                    }
+                    Elements  headers  = elementsCarDetailContent.select("h3");
+                    String ngoaithat="";
+                    String noithat ="";
+                    String vanhanh ="";
+                    String antoan ="";
+
+                    for (int i = 0; i < headers.size(); i++) {
+                        Element header = headers.get(i);
+                        Element nextElement = header.nextElementSibling();
+                        StringBuilder content = new StringBuilder();
+                        while (nextElement != null && !nextElement.tagName().equals("h3")) {
+                            content.append(nextElement.outerHtml()); // Lấy HTML của các phần tử sau thẻ h3
+                            nextElement = nextElement.nextElementSibling();
+                        }
+                        if(header.toString().contains("Ngoại thất")){
+                            ngoaithat = content.toString().replaceAll("/images/","https://oto360.net/images/");
+                        }
+                        if(header.toString().contains("Nội thất")){
+                            noithat = content.toString().replaceAll("/images/","https://oto360.net/images/");;
+                        }
+                        if(header.toString().contains("Vận hành")){
+                            vanhanh = content.toString().replaceAll("/images/","https://oto360.net/images/");;
+                        }
+                        if(header.toString().contains("An toàn")){
+                            antoan = content.toString().replaceAll("/images/","https://oto360.net/images/");;
+                        }
+                    }
 
                     Elements elementsCarDetail= docCar.select(".carLeft .sTable");
                     Element rowThuonghieu = elementsCarDetail.get(0).selectFirst("tr:contains(" + "Thương hiệu" + ")");
@@ -346,6 +388,17 @@ public class CrawlDataService {
                             carDetailModelRef.get().setRearBrake(phanhtruoc);
                             //    Phanh trước/sau
                             carDetailModelRef.get().setBrakeTechnology(congnghephanh);
+                            //  noi bat, gioi thieu xe
+                            carDetailModelRef.get().setOutstanding(noibat);
+                            //    ngoai that
+                            carDetailModelRef.get().setExterior(ngoaithat);
+                            //    noi that
+                            carDetailModelRef.get().setInterior(noithat);
+                            //    van hanh
+                            carDetailModelRef.get().setOperate(vanhanh);
+                            //    an toan
+                            carDetailModelRef.get().setSafeAndComfortable(antoan);
+
                             listCarDetailModel.add(this.carDetailRepository.save(carDetailModelRef.get()));
                         }
                         listCarDetailModel.add(carDetailModelRef.get());
@@ -382,6 +435,17 @@ public class CrawlDataService {
                         carDetailModel.setRearBrake(phanhtruoc);
                         //    Phanh trước/sau
                         carDetailModel.setBrakeTechnology(congnghephanh);
+                        //  noi bat, gioi thieu xe
+                        carDetailModel.setOutstanding(noibat);
+                        //    ngoai that
+                        carDetailModel.setExterior(ngoaithat);
+                        //    noi that
+                        carDetailModel.setInterior(noithat);
+                        //    van hanh
+                        carDetailModel.setOperate(vanhanh);
+                        //    an toan
+                        carDetailModel.setSafeAndComfortable(antoan);
+
                         carDetailModel.setType(Constants.CLONE);
                         carDetailModelRef.set(this.carDetailRepository.save(carDetailModel));
                         listCarDetailModel.add(carDetailModel);

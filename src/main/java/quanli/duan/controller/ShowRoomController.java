@@ -10,18 +10,18 @@ import quanli.duan.service.ShowRoomService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/auth/v1/showroom")
+@RequestMapping("/api/v1/")
 public class ShowRoomController {
     private final ShowRoomService showRoomService;
 
-    @GetMapping("/get-by-brandId")
+    @GetMapping("un-auth/showroom/get-by-brandId")
     public ResponseEntity<Object> getAllVersionByBrandId(@RequestParam(value = "brandId", required = false )  Integer brandId ,
                                                          @RequestParam(value = "page", required = false )  Integer page,
                                                          @RequestParam(value = "size", required = false )  Integer size) {
         return ResponseEntity.ok(showRoomService.getShowRoomByBrandId(brandId, page, size));
     }
 
-    @GetMapping("/get-by-outstanding")
+    @GetMapping("un-auth/showroom/get-by-outstanding")
     public ResponseEntity<Object> getShowRoomByOutstanding(  @RequestParam(value = "page", required = false )  Integer page,
                                                              @RequestParam(value = "size", required = false )  Integer size) {
         return ResponseEntity.ok(showRoomService.getShowRoomByOutstanding(page,size));

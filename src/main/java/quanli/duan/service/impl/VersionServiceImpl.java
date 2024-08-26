@@ -14,9 +14,10 @@ public class VersionServiceImpl implements VersionService {
     private  final VersionRepository versionRepository;
      @Override
     public ResponseBody<Object> getAllVersionByBrandId(Integer brandId) {
-        var versionRespones = versionRepository.findVersionModelByBrandId(brandId);
+        var versionRespones = versionRepository.findVersionModelByBrandId(brandId,Boolean.TRUE);
         var response = new ResponseBody<>();
         response.setOperationSuccess(SUCCESS, versionRespones);
         return response;
     }
+
 }

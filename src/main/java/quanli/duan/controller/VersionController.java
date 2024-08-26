@@ -7,11 +7,11 @@ import quanli.duan.service.VersionService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/auth/v1/version")
+@RequestMapping("/api/v1/")
 public class VersionController {
     final VersionService versionService;
 
-    @GetMapping("/get-by-brandId")
+    @GetMapping("un-auth/version/get-by-brandId")
     public ResponseEntity<Object> getAllVersionByBrandId(@RequestParam(value = "brandId", required = false)  Integer brandId) {
         return ResponseEntity.ok(versionService.getAllVersionByBrandId(brandId));
     }

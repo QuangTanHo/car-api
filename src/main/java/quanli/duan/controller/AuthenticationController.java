@@ -15,7 +15,7 @@ import quanli.duan.exception.ServiceSecurityException;
 import quanli.duan.service.AuthenticationService;
 
 @RestController
-@RequestMapping("/api/v1/un_auth")
+@RequestMapping("/api/v1/un-auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
 

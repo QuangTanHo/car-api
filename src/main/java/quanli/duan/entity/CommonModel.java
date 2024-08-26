@@ -1,10 +1,13 @@
 package quanli.duan.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
+@Getter
+@Setter
 @MappedSuperclass
  abstract  class CommonModel implements Serializable {
     private static final long serialVersionUID = 1L;

@@ -35,12 +35,12 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration configuration = new CorsConfiguration();
-                    configuration.setAllowedOrigins(List.of("http://localhost:8089", "https://example.com"));
+                    configuration.setAllowedOrigins(List.of("*"));
                     configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                     configuration.setAllowedHeaders(List.of("authorization", "content-type", "x-auth-token"));
                     return configuration;
                 }))
-                .authorizeHttpRequests(request -> request.requestMatchers("/api/v1/un_auth/**")
+                .authorizeHttpRequests(request -> request.requestMatchers("/api/v1/un-auth/**")
                         .permitAll()
                         .requestMatchers("/api/v1/admin").hasAnyAuthority("1")
                         .requestMatchers("/api/v1/user").hasAnyAuthority("2")

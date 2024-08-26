@@ -10,12 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CompareCarRequest {
-    Integer brandId1 ;
+    String brandId1 ;
 
-    Integer carModelId1 ;
+    String carModelId1 ;
 
-    Integer brandId2 ;
+    String brandId2 ;
 
-    Integer carModelId2 ;
+    String carModelId2 ;
 
 }

@@ -12,23 +12,23 @@ import quanli.duan.service.UserService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 public class UserController {
 
     private final UserService userService;
     private final Validator validator;
 
-    @GetMapping("/un_auth/user/user_list")
+    @GetMapping("/un-auth/user/user-list")
     public ResponseEntity<Object> getAllUserDetail() {
         return ResponseEntity.ok(userService.getAllUserDetail());
     }
 
-    @GetMapping("/un_auth/user/{user_id}")
+    @GetMapping("/un-auth/user/{user_id}")
     public ResponseEntity<Object> getUserDetail(@PathVariable("user_id") String userId) {
         return ResponseEntity.ok(userService.getUserIdDetail(userId));
     }
 
-    @PostMapping("/un_auth/user/user_update")
+    @PostMapping("/un-auth/user/user-update")
     public ResponseEntity<Object> updateUserDetail(@RequestBody UpdateUserRequest request) {
         this.validateRequest(request);
         return ResponseEntity.ok(userService.updateUser(request));
@@ -39,7 +39,7 @@ public class UserController {
         return ResponseEntity.ok(userService.deleteUserById(userId));
     }
 
-    @PostMapping("/admin/category/get_all_user")
+    @PostMapping("/admin/category/get-all-user")
     public ResponseEntity<Object> getAllUser(@RequestBody UserSearchRequest request) {
         this.validateRequest(request);
         return ResponseEntity.ok(userService.getAllUserPage(request));

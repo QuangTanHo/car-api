@@ -31,4 +31,8 @@ public interface CarModelRepository extends JpaRepository<CarModel, Integer> {
     Page<CarModel> findCarModelByBrandIdAndIsDelete(Integer brandId ,Boolean isDelete,Pageable pageable);
 
     List<CarModel> findCarModelByBrandIdAndIsDelete(Integer brandId ,Boolean isDelete);
+
+    boolean existsByCarNameAndBrandIdAndIsDelete(String name ,Integer brandId, Boolean isDelete);
+
+    CarModel findByCarModelIdAndIsDelete(Integer brandId, Boolean isDelete);
 }
